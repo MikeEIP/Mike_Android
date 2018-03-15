@@ -30,7 +30,7 @@ fun MikeLogin() {
     rootObject.put("username","theSnoop")
     rootObject.put("password","thePass")
 
-    Fuel.post("https://mike.arrogant.space/v1/login").body("""[{"username": "theSnoop", "password": "thePass"}]""").response { request, response, result ->
+    Fuel.post("https://mike.arrogant.space/v1/login").header(Pair("Content-Type", "application/json")).body(rootObject.toString()).responseString { request, response, result ->
         when (result) {
             is Result.Success -> {
                 println("Result: ${result.get()}")
