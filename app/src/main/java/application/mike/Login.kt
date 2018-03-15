@@ -11,6 +11,7 @@ import application.mike.R.layout.activity_register
 
 class Login : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -18,7 +19,8 @@ class Login : AppCompatActivity() {
         val LoginButton = findViewById<Button>(R.id.Login)
 
         LoginButton.setOnClickListener{
-                Toast.makeText(this@Login, "Login", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@Login, "Login", Toast.LENGTH_LONG).show()
+            MikeLogin()
         }
 
         val register = findViewById<Button>(R.id.register)
