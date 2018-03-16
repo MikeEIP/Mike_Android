@@ -27,21 +27,31 @@ class Register : AppCompatActivity() {
     }
 
     fun UserRegister() {
-       // @NotNull(message = "can't be missing")
-        //@Size(min = 1, message = "can't be empty")
-        //@Pattern(regexp="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$", message="must be a valid email")
         var email = findViewById<EditText>(R.id.Email) as EditText
         var username = findViewById<EditText>(R.id.Username) as EditText
         var password = findViewById<EditText>(R.id.Password) as EditText
         var passwordcnmfirm = findViewById<EditText>(R.id.PasswordConfirm) as EditText
         val btn = findViewById<Button>(R.id.RegisterButton) as Button
 
+        if (email.text.isEmpty() && username.text.isEmpty() && password.text.isEmpty()) {
+            Toast.makeText(this, "No login or password provided", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (!Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$").containsMatchIn(email.text)){
+            Toast.makeText(this, "You must provide a correct Email", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (password.text != passwordcnmfirm.text){
+            Toast.makeText(this, "Password missmatch", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val rootObject= JSONObject()
-        rootObject.put("password", password?.text.toString())
-        rootObject.put("username", username?.text.toString())
+        rootObject.put("password", password.text.toString())
+        rootObject.put("username", username.text.toString())
         rootObject.put("lastname", "dupont")
         rootObject.put("firstname", "mike")
-        rootObject.put("email", email?.text.toString())
+        rootObject.put("email", email.text.toString())
         rootObject.put("birthday", "1992-11-11T08:40:51.620Z")
         rootObject.put("language", "fr_FR")
         rootObject.put("xp", 20)
