@@ -20,10 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Register">
-
-        </activity>
+        <activity android:name=".Register" />
+        <activity android:name=".UserProfil" />
+        <activity
+            android:name=".Navigation"
+            android:label="@string/title_activity_navigation" />
     </application>
 
 </manifest>
