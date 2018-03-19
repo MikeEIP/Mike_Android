@@ -22,6 +22,7 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        startActivity(Intent(this@Login, UserProfil::class.java))
 
         val LoginButton = findViewById<Button>(R.id.Login)
 
