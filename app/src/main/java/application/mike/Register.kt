@@ -27,11 +27,10 @@ class Register : AppCompatActivity() {
     }
 
     fun UserRegister() {
-        var email = findViewById<EditText>(R.id.Email) as EditText
-        var username = findViewById<EditText>(R.id.Username) as EditText
-        var password = findViewById<EditText>(R.id.Password) as EditText
-        var passwordcnmfirm = findViewById<EditText>(R.id.PasswordConfirm) as EditText
-        val btn = findViewById<Button>(R.id.RegisterButton) as Button
+        var email = findViewById<EditText>(R.id.Email)
+        var username = findViewById<EditText>(R.id.Username)
+        var password = findViewById<EditText>(R.id.Password)
+        var passwordcnmfirm = findViewById<EditText>(R.id.PasswordConfirm)
 
         if (email.text.isEmpty() && username.text.isEmpty() && password.text.isEmpty()) {
             Toast.makeText(this, "No login or password provided", Toast.LENGTH_SHORT).show()
@@ -41,7 +40,8 @@ class Register : AppCompatActivity() {
             Toast.makeText(this, "You must provide a correct Email", Toast.LENGTH_SHORT).show()
             return
         }
-        if (password.text != passwordcnmfirm.text){
+
+        if (password.text.toString() != passwordcnmfirm.text.toString()){
             Toast.makeText(this, "Password missmatch", Toast.LENGTH_SHORT).show()
             return
         }
