@@ -17,14 +17,14 @@ class FilFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        var rootView = inflater!!.inflate(R.layout.fragment_fil, container, false)
+        val rootView = inflater!!.inflate(R.layout.fragment_fil, container, false)
         return rootView
     }
 
     companion object {
         fun newInstance(): FilFragment {
-            var fragment = FilFragment()
-            var args = Bundle()
+            val fragment = FilFragment()
+            val args = Bundle()
             fragment.arguments = args
             return fragment
         }
