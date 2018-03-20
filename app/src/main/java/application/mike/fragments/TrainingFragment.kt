@@ -32,6 +32,6 @@ class TrainingFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var editTextHome = view!!.findViewById(R.id.textTraining) as TextView
+        //var editTextHome = view!!.findViewById(R.id.textTraining) as TextView
     }
 }
