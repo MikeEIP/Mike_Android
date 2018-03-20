@@ -22,7 +22,6 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        startActivity(Intent(this@Login, UserProfil::class.java))
 
         val LoginButton = findViewById<Button>(R.id.Login)
 
@@ -32,7 +31,9 @@ class Login : AppCompatActivity() {
 
 
             //Toast.makeText(this@Login, "Login", Toast.LENGTH_LONG).show()
-            connect(login.text.toString(), password.text.toString())
+            startActivity(Intent(this@Login, UserProfil::class.java))
+
+//            connect(login.text.toString(), password.text.toString())
 
         }
 

@@ -31,4 +31,4 @@ class ProfilFragment : Fragment() {
             return fragment
         }
     }
-}// Required empty public constructor
+}
