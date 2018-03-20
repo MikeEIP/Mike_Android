@@ -1,19 +1,104 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#ff54ce"
     tools:context="application.mike.fragments.TrainingFragment">
 
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="210dp"
+        android:layout_marginTop="60dp"
+        android:background="@android:color/white"/>
+
     <TextView
-        android:id="@+id/textTraining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trophés"
+        android:textColor="#ffffff"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="100dp"
+        android:id="@+id/textView6" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1087"
+        android:textColor="#ffffff"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="110dp"
+        android:id="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lvl"
+        android:textColor="#ffffff"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="280dp"
+        android:id="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="27"
+        android:textColor="#ffffff"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="280dp"
+        android:id="@+id/textView7" />
+
+    <Button
+        android:id="@+id/button_training"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Training" />
+        android:layout_height="wrap_content"
+        android:text="Begin training"
+        android:layout_marginTop="530dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:background="#ff8200"
+        android:textColor="#ffffff"
+        />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:title="Training"
+        app:titleMarginStart="170dp"
+        />
+
+    <Button
+        android:id="@+id/button2"
+        android:background="@drawable/roundshapebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/toolbar3"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Alert"
+        android:textColor="#4286f4"
+        />
 
     <Button
         android:id="@+id/button3"
+        android:background="@drawable/roundshapebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_alignBottom="@+id/toolbar3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="Back"
+        android:textColor="#4286f4"
+        />
 
-</FrameLayout>
+
+</RelativeLayout>
