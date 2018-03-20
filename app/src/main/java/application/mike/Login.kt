@@ -31,9 +31,9 @@ class Login : AppCompatActivity() {
 
 
             //Toast.makeText(this@Login, "Login", Toast.LENGTH_LONG).show()
-            startActivity(Intent(this@Login, UserProfil::class.java))
+            //startActivity(Intent(this@Login, UserProfil::class.java))
 
-//            connect(login.text.toString(), password.text.toString())
+             connect(login.text.toString(), password.text.toString())
 
         }
 

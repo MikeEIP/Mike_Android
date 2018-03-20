@@ -5,9 +5,12 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import application.mike.AccessToken
 
@@ -44,6 +47,10 @@ class ProfilFragment : Fragment() {
 
         val URL : String = "https://mike.arrogant.space/v1/user/me"
         var profile: Json
+        val view = inflater!!.inflate(R.layout.fragment_profil, container, false)
+        var ProfilTextView: TextView? = null
+        var mAdapter: ProfilFragment? = null
+        ProfilTextView = view.findViewById(R.id.Salle) as TextView
 
         URL.httpGet().header(Pair("Authorization", "Bearer ${AccessToken.ACCESS_TOKEN}")).responseJson()
         { request, response, result ->
@@ -60,6 +67,7 @@ class ProfilFragment : Fragment() {
                     var language = profileObject.getString("language")
                     val xp = profileObject.getInt("xp")
                     val musclor = profileObject.getString("musclor")
+                    ProfilTextView!!.text = username
                 }
                 is Result.Failure -> {
 //                    Context().(this@ProfilFragment, "Check your connexion", Toast.LENGTH_LONG).show()
@@ -68,7 +76,6 @@ class ProfilFragment : Fragment() {
             }
         }
         println(AccessToken.ACCESS_TOKEN)
-
-        return inflater!!.inflate(R.layout.fragment_profil, container, false)
+        return view
     }
 }// Required empty public constructor
