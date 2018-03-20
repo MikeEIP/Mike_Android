@@ -7,27 +7,102 @@
     android:orientation="vertical"
     tools:context="application.mike.fragments.ProfilFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
         android:background="#ff8200">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/de"
             android:layout_width="396dp"
             android:layout_height="120dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
             android:background="#ff8200"
-            android:layout_marginTop="36dp"
             android:src="@drawable/profilpicture"
             app:civ_border_color="#FFFF" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/Level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:text="Lvl 27"
+            android:textSize="25dp"/>
+
+        <TextView
+            android:id="@+id/Salle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/Level"
+            android:layout_marginRight="10dp"
+            android:text="Jean Bouin"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/City"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/Level"
+            android:layout_marginRight="15dp"
+            android:text="Nice, France"
+            android:textSize="15dp" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFF">
+        android:layout_height="90dp"
+        android:layout_marginTop="20dp"
+        android:background="#ff8200"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/friend"
+            android:layout_width="91dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/profilpicture"
+            app:civ_border_color="#FFFF" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/friend1"
+            android:layout_width="91dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/profilpicture"
+            app:civ_border_color="#FFFF" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/friend2"
+            android:layout_width="91dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/profilpicture"
+            app:civ_border_color="#FFFF" />
+
+        <Button
+            android:id="@+id/boutthon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundshapebtn"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="more"
+            android:textAllCaps="false" />
+
 
     </LinearLayout>
-
+    
 </LinearLayout>
