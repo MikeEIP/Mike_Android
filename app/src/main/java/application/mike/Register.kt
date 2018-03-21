@@ -31,6 +31,8 @@ class Register : AppCompatActivity() {
         var username = findViewById<EditText>(R.id.Username)
         var password = findViewById<EditText>(R.id.Password)
         var passwordcnmfirm = findViewById<EditText>(R.id.PasswordConfirm)
+        var firstname = findViewById<EditText>(R.id.Firstname)
+        var lastname = findViewById<EditText>(R.id.Lastname)
 
         if (email.text.isEmpty() && username.text.isEmpty() && password.text.isEmpty()) {
             Toast.makeText(this, "No login or password provided", Toast.LENGTH_SHORT).show()
@@ -40,7 +42,6 @@ class Register : AppCompatActivity() {
             Toast.makeText(this, "You must provide a correct Email", Toast.LENGTH_SHORT).show()
             return
         }
-
         if (password.text.toString() != passwordcnmfirm.text.toString()){
             Toast.makeText(this, "Password missmatch", Toast.LENGTH_SHORT).show()
             return
@@ -49,19 +50,19 @@ class Register : AppCompatActivity() {
         val rootObject= JSONObject()
         rootObject.put("password", password.text.toString())
         rootObject.put("username", username.text.toString())
-        rootObject.put("lastname", "dupont")
-        rootObject.put("firstname", "mike")
+        rootObject.put("firstname", firstname.text.toString())
+        rootObject.put("lastname", lastname.text.toString())
         rootObject.put("email", email.text.toString())
         rootObject.put("birthday", "1992-11-11T08:40:51.620Z")
         rootObject.put("language", "fr_FR")
-        rootObject.put("xp", 20)
+        rootObject.put("xp", 0)
         rootObject.put("musclor", 10)
 
         println(rootObject?.toString())
         Fuel.post("https://mike.arrogant.space/v1/user").header(Pair("Content-Type", "application/json")).body(rootObject.toString()).responseString { request, response, result ->
             when (result) {
                 is Result.Success -> {
-                    startActivity(Intent(this@Register, UserProfil::class.java))
+                    startActivity(Intent(this@Register, Login::class.java))
                     println("Result: ${result.get()}")
                 }
                 is Result.Failure -> {
@@ -71,5 +72,4 @@ class Register : AppCompatActivity() {
             }
         }
     }
-
 }
