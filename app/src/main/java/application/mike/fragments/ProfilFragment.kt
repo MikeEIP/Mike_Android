@@ -49,8 +49,10 @@ class ProfilFragment : Fragment() {
         var profile: Json
         val view = inflater!!.inflate(R.layout.fragment_profil, container, false)
         var ProfilTextView: TextView? = null
+        var LevelTextView: TextView? = null
         var mAdapter: ProfilFragment? = null
         ProfilTextView = view.findViewById(R.id.Salle) as TextView
+        LevelTextView = view.findViewById(R.id.Level) as TextView
 
         URL.httpGet().header(Pair("Authorization", "Bearer ${AccessToken.ACCESS_TOKEN}")).responseJson()
         { request, response, result ->
@@ -65,9 +67,10 @@ class ProfilFragment : Fragment() {
                     var email = profileObject.getString("email")
                     var birthday = profileObject.getString("birthday")
                     var language = profileObject.getString("language")
-                    val xp = profileObject.getInt("xp")
+                    val xp : Int = profileObject.getInt("xp")
                     val musclor = profileObject.getString("musclor")
                     ProfilTextView!!.text = username
+                    LevelTextView!!.setText("lvl" + xp)
                 }
                 is Result.Failure -> {
 //                    Context().(this@ProfilFragment, "Check your connexion", Toast.LENGTH_LONG).show()
@@ -75,7 +78,6 @@ class ProfilFragment : Fragment() {
                 }
             }
         }
-        println(AccessToken.ACCESS_TOKEN)
         return view
     }
 }// Required empty public constructor
