@@ -113,5 +113,4 @@ class Register : AppCompatActivity() {
         }
 
     }
-
 }
