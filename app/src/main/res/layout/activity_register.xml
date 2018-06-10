@@ -95,12 +95,12 @@
             android:text="Suivant"/>
 
         <TextView android:id="@+id/link_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="Already a member? Login"
-            android:gravity="center"
-            android:textSize="16dip"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Already a member? Login"
+        android:gravity="center"
+        android:textSize="16dip"/>
 
     </LinearLayout>
 </ScrollView>

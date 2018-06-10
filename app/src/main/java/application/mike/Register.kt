@@ -1,19 +1,24 @@
 package application.mike
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.annotation.Size
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.result.Result
 import application.mike.Tools.Tools
+import application.mike.Login
 import kotlinx.android.synthetic.main.activity_login.*
 import org.intellij.lang.annotations.Pattern
 import org.jetbrains.annotations.NotNull
 import org.json.JSONObject
+import java.util.*
+import javax.xml.datatype.DatatypeConstants.MONTHS
 
 class Register : AppCompatActivity() {
 
@@ -23,6 +28,7 @@ class Register : AppCompatActivity() {
     private lateinit var passwordconfirm : EditText
     private lateinit var firstname: EditText
     private lateinit var lastname : EditText
+    private var birthdate : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +44,11 @@ class Register : AppCompatActivity() {
 
         nextButton.setOnClickListener {
             registerP2()
+        }
+
+        val returnLogin = findViewById<TextView>(R.id.link_login)
+        returnLogin.setOnClickListener {
+            super.onBackPressed()
         }
     }
 
@@ -67,7 +78,28 @@ class Register : AppCompatActivity() {
 
     private fun registerP3() {
         setContentView(R.layout.activity_register2)
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        var checkYears : Int = 2018
+        var lblDate = findViewById<TextView>(R.id.date)
 
+        lblDate.setOnClickListener {
+            val dpd = DatePickerDialog(this, R.style.Theme_AppCompat_DayNight_Dialog ,DatePickerDialog.OnDateSetListener { view, years, monthOfYear, dayOfMonth ->
+                // Display Selected date in textbox
+                birthdate = ""
+                lblDate.setText("" + dayOfMonth + " / " + (monthOfYear + 1) + " / " + years)
+                checkYears = years
+                birthdate += years
+                birthdate += "-"
+                birthdate += (monthOfYear + 1)
+                birthdate += "-"
+                birthdate += dayOfMonth
+                birthdate += "T08:40:51.620Z"
+            }, year, month, day)
+            dpd.show()
+        }
         //Page 2
         username = findViewById(R.id.Username)
         val registerButton = findViewById<Button>(R.id.register)
@@ -75,7 +107,8 @@ class Register : AppCompatActivity() {
         registerButton.setOnClickListener {
             if (username.text.isEmpty()) {
                 Toast.makeText(this, "Champ vide", Toast.LENGTH_LONG).show()
-                registerP3()
+            } else if ((2018 - checkYears) < 16) {
+                Toast.makeText(this, "Minimum 15 ans", Toast.LENGTH_SHORT).show()
             } else {
                 createAccount()
             }
@@ -83,6 +116,7 @@ class Register : AppCompatActivity() {
     }
 
     private fun createAccount() {
+
         val rootObject= JSONObject()
         rootObject.put("password", password.text.toString())
         rootObject.put("username", username.text.toString())
@@ -91,7 +125,7 @@ class Register : AppCompatActivity() {
         rootObject.put("email", email.text.toString())
 
         //TODO
-        rootObject.put("birthday", "1992-11-11T08:40:51.620Z")
+        rootObject.put("birthday", birthdate)
         rootObject.put("language", "fr_FR")
 
         //Pas renseigné
