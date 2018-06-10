@@ -9,67 +9,109 @@ import android.widget.EditText
 import android.widget.Toast
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.result.Result
+import application.mike.Tools.Tools
+import kotlinx.android.synthetic.main.activity_login.*
 import org.intellij.lang.annotations.Pattern
 import org.jetbrains.annotations.NotNull
 import org.json.JSONObject
 
 class Register : AppCompatActivity() {
 
+    private lateinit var email : EditText
+    private lateinit var username : EditText
+    private lateinit var password : EditText
+    private lateinit var passwordconfirm : EditText
+    private lateinit var firstname: EditText
+    private lateinit var lastname : EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        val RegisterButton = findViewById<Button>(R.id.RegisterButton)
+        firstname = findViewById(R.id.firstname)
+        lastname = findViewById(R.id.lastname)
+        email = findViewById(R.id.Email)
+        password = findViewById(R.id.Password)
+        passwordconfirm = findViewById(R.id.PasswordConfirm)
 
-        RegisterButton.setOnClickListener {
-            UserRegister()
+        val nextButton = findViewById<Button>(R.id.next)
+
+        nextButton.setOnClickListener {
+            registerP2()
         }
     }
 
-    fun UserRegister() {
-        var email = findViewById<EditText>(R.id.Email)
-        var username = findViewById<EditText>(R.id.Username)
-        var password = findViewById<EditText>(R.id.Password)
-        var passwordcnmfirm = findViewById<EditText>(R.id.PasswordConfirm)
+    private fun registerP2() {
 
-        if (email.text.isEmpty() && username.text.isEmpty() && password.text.isEmpty()) {
-            Toast.makeText(this, "No login or password provided", Toast.LENGTH_SHORT).show()
+        if (email.text.isEmpty() || firstname.text.isEmpty() || lastname.text.isEmpty() || password.text.isEmpty() || passwordconfirm.text.isEmpty()) {
+            Toast.makeText(this, "Un des champs est vide", Toast.LENGTH_SHORT).show()
             return
         }
-        if (!Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$").containsMatchIn(email.text)){
+        if (!Tools.isEmailValid(email.text.toString())){
             Toast.makeText(this, "You must provide a correct Email", Toast.LENGTH_SHORT).show()
             return
         }
 
-        if (password.text.toString() != passwordcnmfirm.text.toString()){
+        if (!Tools.isPasswordValid(password.text.toString())) {
+            Toast.makeText(this, "Le mot de passe doit contenir au moins 1 chiffre, 1 majuscule, un characere spécial", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (password.text.toString() != passwordconfirm.text.toString()){
             Toast.makeText(this, "Password missmatch", Toast.LENGTH_SHORT).show()
             return
         }
 
+        registerP3()
+    }
+
+    private fun registerP3() {
+        setContentView(R.layout.activity_register2)
+
+        //Page 2
+        username = findViewById(R.id.Username)
+        val registerButton = findViewById<Button>(R.id.register)
+
+        registerButton.setOnClickListener {
+            if (username.text.isEmpty()) {
+                Toast.makeText(this, "Champ vide", Toast.LENGTH_LONG).show()
+                registerP3()
+            } else {
+                createAccount()
+            }
+        }
+    }
+
+    private fun createAccount() {
         val rootObject= JSONObject()
         rootObject.put("password", password.text.toString())
         rootObject.put("username", username.text.toString())
-        rootObject.put("lastname", "dupont")
-        rootObject.put("firstname", "mike")
+        rootObject.put("lastname", firstname.text.toString())
+        rootObject.put("firstname", lastname.text.toString())
         rootObject.put("email", email.text.toString())
+
+        //TODO
         rootObject.put("birthday", "1992-11-11T08:40:51.620Z")
         rootObject.put("language", "fr_FR")
-        rootObject.put("xp", 20)
-        rootObject.put("musclor", 10)
 
-        println(rootObject?.toString())
+        //Pas renseigné
+        rootObject.put("xp", 0)
+        rootObject.put("musclor", 0)
+        rootObject.put("profilPicture", "a")
         Fuel.post("https://mike.arrogant.space/v1/user").header(Pair("Content-Type", "application/json")).body(rootObject.toString()).responseString { request, response, result ->
             when (result) {
                 is Result.Success -> {
+                    Toast.makeText(this, "La requete fonctionne", Toast.LENGTH_LONG).show()
                     startActivity(Intent(this@Register, UserProfil::class.java))
-                    println("Result: ${result.get()}")
+                    System.out.println("Result: ${result.get()}")
                 }
                 is Result.Failure -> {
                     Toast.makeText(this@Register, "Error Login", Toast.LENGTH_LONG).show()
-                    println("Fail déso gros")
+                    System.out.println("Fail déso gros")
                 }
             }
         }
+
     }
 
 }

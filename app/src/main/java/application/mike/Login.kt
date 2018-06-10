@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import android.view.animation.Animation
+import application.mike.Tools.Tools
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -18,24 +19,25 @@ import org.json.JSONObject
 import org.xml.sax.Parser
 
 class Login : AppCompatActivity() {
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+
+        val login = findViewById<EditText>(R.id.Username)
+        val password = findViewById<EditText>(R.id.Password)
         val LoginButton = findViewById<Button>(R.id.Login)
 
         LoginButton.setOnClickListener{
-            var login = findViewById<EditText>(R.id.Username)
-            var password = findViewById<EditText>(R.id.Password)
-
-
-            //Toast.makeText(this@Login, "Login", Toast.LENGTH_LONG).show()
-            //startActivity(Intent(this@Login, UserProfil::class.java))
-
-             connect(login.text.toString(), password.text.toString())
-
+            if (Tools.isPasswordValid(password.text.toString())) {
+                connect(login.text.toString(), password.text.toString())
+            } else {
+                val error = Toast.makeText(applicationContext, "Fail", Toast.LENGTH_LONG)
+                error.show()
+            }
         }
+
 
         val register = findViewById<Button>(R.id.register)
 
@@ -45,7 +47,7 @@ class Login : AppCompatActivity() {
 
     }
 
-    fun connect(name: String, password: String) {
+    private fun connect(name: String, password: String) {
         var accesstoken: Json
         val rootObject= JSONObject()
 

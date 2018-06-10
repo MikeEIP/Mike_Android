@@ -20,11 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register" />
-        <activity android:name=".UserProfil" />
+        <activity android:name=".Register"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".UserProfil"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Navigation"
-            android:label="@string/title_activity_navigation" />
+            android:label="@string/title_activity_navigation"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

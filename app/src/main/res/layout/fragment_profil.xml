@@ -60,6 +60,19 @@
             android:text="Nice, France"
             android:textSize="15dp" />
 
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:progress="47"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/City"
+            android:layout_alignEnd="@+id/Level"
+            android:layout_alignLeft="@+id/Level"
+            android:layout_alignRight="@+id/Level"
+            android:layout_alignStart="@+id/Level"
+            android:layout_below="@+id/Level"/>
+
     </RelativeLayout>
 
     <LinearLayout
@@ -67,7 +80,8 @@
         android:layout_height="90dp"
         android:layout_marginTop="20dp"
         android:background="#ff8200"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:id="@+id/test">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/friend"
@@ -97,13 +111,14 @@
             android:id="@+id/boutthon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
             android:background="@drawable/roundshapebtn"
             android:gravity="center"
-            android:layout_marginTop="20dp"
             android:text="more"
             android:textAllCaps="false" />
 
-
     </LinearLayout>
-    
+
+
 </LinearLayout>

@@ -40,6 +40,7 @@ dependencies {
     compile 'com.github.kittinunf.fuel:fuel-gson:1.12.1' //for Gson support
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.android.support:design:26.1.0'
+    compile 'info.hoang8f:android-segmented:1.0.6'
 
     implementation 'com.google.android.gms:play-services-ads:11.8.0'
 }

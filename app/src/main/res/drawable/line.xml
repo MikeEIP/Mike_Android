@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 <item>
     <shape >
-        <solid android:color="#ff8200" />
+        <solid android:color="#D7D2CB" />
     </shape>
 </item>
 
@@ -12,7 +12,7 @@
         android:pivotY="70%">
         <shape
             android:shape="rectangle" >
-            <solid android:color="#D7D2CB" />
+            <solid android:color="#ff8200" />
         </shape>
     </rotate>
 </item>
@@ -20,7 +20,7 @@
     <item android:top="500dp">
             <shape
                 android:shape="rectangle" >
-                <solid android:color="#D7D2CB" />
+                <solid android:color="#ff8200" />
             </shape>
     </item>
 
